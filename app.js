@@ -8,7 +8,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const md5 = require("md5");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/UserDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://admin:Test123@cluster0.oujmh.mongodb.net/user?retryWrites=true&w=majority", { useNewUrlParser: true });
 const app = express();
 
 const userSchema = new mongoose.Schema({
@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema({
     }
   },
   College: String,
+
   phone_no:{
     type: Number,
     unique: true,
@@ -117,7 +118,7 @@ app.route("/signup")
     const email = req.body.email;
     const password =  md5(req.body.password);
     const confirm_password =  md5(req.body.confirm_password);
-    console.log(first_name, last_name, User_Type, College, phone_no, email, password, confirm_password);
+    // console.log(first_name, last_name, User_Type, College, phone_no, email, password, confirm_password);
     if(confirm_password === password){
       const user = new User({
         first_name: first_name,
@@ -143,6 +144,7 @@ app.route("/signup")
       res.send("confirm password doesn't match");
     }
   });
+
 
 app.delete("/signout", (req, res) => {
   User.deleteMany({}, (err) => {
