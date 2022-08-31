@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require('mongoose-unique-validator');
-const validator = require("validator");
+const {isEmail} = require("validator");
+
 const userSchema = new mongoose.Schema({
     first_name:{
       type: String,
@@ -22,34 +23,32 @@ const userSchema = new mongoose.Schema({
           throw new Error("Invalid User Type");
         }
       }
+
     },
     College: String,
   
     phone_no:{
       type: Number,
-      unique: true,
+      // unique: true,
       required: true,
       minlength: 10,
     },
   
     email: {
       type: String,
-      required: true,
+      required: [true, 'Please enter an email'],
       unique: true,
-      validate(value) {
-        if (!validator.isEmail(value)) {
-          throw new Error("Email is invalid");
-        }
-      },
+      validate: [isEmail, 'Please an valid email']
     },
     password: {
       type: String,
-      required: true,
-      minlength: 8,
-    },
-    confirm_password: {
-      type: String,
-      required: true,
+      required: [true, 'Please enter an password'],
+      validate(value) {
+        if(value.length<8){
+          throw new Error('Minimum password length is 8');
+        }
+      }
+
     }
   });
   
