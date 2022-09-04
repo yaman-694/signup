@@ -14,7 +14,6 @@ const verifyToken = (req, res, next) => {
       if(err){
         return res.status(302).redirect("/login");
       }else{
-        console.log(decodedToken);
         next();
       }
     });

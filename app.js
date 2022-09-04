@@ -16,8 +16,12 @@ const home = require('./routes/home')
 const mongoose = require("mongoose");
 
 //connections
-const uri = process.env.MONGO_DB;
-mongoose.connect(uri, { useNewUrlParser: true });
+try{ 
+  const uri = process.env.MONGO_DB;
+  mongoose.connect(uri, { useNewUrlParser: true });
+}catch(e){
+  console.log(e.message);
+}
 const app = express();
 
 app.set("view engine", "ejs");
@@ -38,14 +42,14 @@ app.use('/logout',logout)
 
 
 
-setInterval(function () {}, Number.MAX_VALUE); // keep process alive
+// setInterval(function () {}, Number.MAX_VALUE); // keep process alive
 
-var myEmitter = new (require('events').EventEmitter)();
+// var myEmitter = new (require('events').EventEmitter)();
 
-// add this handler before emitting any events
-process.on('uncaughtException', function (err) {
-    console.log('UNCAUGHT EXCEPTION - keeping process alive:', err); // err.message is "foobar"
-});
+// // add this handler before emitting any events
+// process.on('uncaughtException', function (err) {
+//     console.log('UNCAUGHT EXCEPTION - keeping process alive:', err); // err.message is "foobar"
+// });
 
 app.listen(process.env.PORT, function () {
   console.log("Server started on port",process.env.PORT);

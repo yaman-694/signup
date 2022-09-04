@@ -13,9 +13,11 @@ const createtoken = (id,User_Type)=>{
   const Token = jwt.sign({id,userpower},process.env.TOKEN_HEADER_KEY,{
       expiresIn: maxAge
   });
+  
   return Token;
 }
 const postRegister = async (req, res) => {
+  
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const User_Type = req.body.User_Type;
@@ -44,7 +46,7 @@ const postRegister = async (req, res) => {
             password: encryptedPassword,
           });
 
-          
+        
         const token = createtoken(user._id,user.User_Type);
         res.cookie('auth',token,{httpOnly: true, maxAge: 3*24*60*60*1000});
         res.status(201).json({user : user._id})
@@ -52,11 +54,11 @@ const postRegister = async (req, res) => {
       
   }catch(err){
     const error = handlerror(err);
-    res.status(400).json({error});
+    res.status(400).json(error);
   }
 }
 const getRegister = (req, res) => {
-    res.render("signup");
+    res.send("signup");
   }
 
 module.exports={

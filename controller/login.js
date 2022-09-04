@@ -45,7 +45,7 @@ const PostLogin = async (req, res) => {
       user
     })
   } catch (err) {
-    const errors = handlerror(e);
+    const errors = handlerror(err);
       res.status(400).json({errors});
   }
 }
