@@ -2,13 +2,14 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const {verifyToken} = require("./middleware/auth");
 const cookieParser = require('cookie-parser')
 require("dotenv").config();
 
 const login = require('./routes/login');
 const logout = require('./routes/logout')
 const alumni = require('./routes/alumni');
+const forgetpassword = require('./routes/forget-password');
+const resetToken = require('./routes/reset')
 const core = require('./routes/core_member')
 const signup = require('./routes/signup');
 const alumni_info = require('./routes/alumni-info');
@@ -20,7 +21,7 @@ try{
   const uri = process.env.MONGO_DB;
   mongoose.connect(uri, { useNewUrlParser: true });
 }catch(e){
-  console.log(e.message);
+  console.log('No connectionrs');
 }
 const app = express();
 
@@ -35,6 +36,8 @@ app.use(cookieParser())
 app.use('/login',login)
 app.use('/signup',signup)
 app.use('/alumni',alumni);
+app.use('/forget-password',forgetpassword);
+app.use('/reset-token',resetToken);
 app.use('/core',core);
 app.use('/home',home)
 app.use('/alumni-info',alumni_info)
@@ -42,14 +45,6 @@ app.use('/logout',logout)
 
 
 
-// setInterval(function () {}, Number.MAX_VALUE); // keep process alive
-
-// var myEmitter = new (require('events').EventEmitter)();
-
-// // add this handler before emitting any events
-// process.on('uncaughtException', function (err) {
-//     console.log('UNCAUGHT EXCEPTION - keeping process alive:', err); // err.message is "foobar"
-// });
 
 app.listen(process.env.PORT, function () {
   console.log("Server started on port",process.env.PORT);

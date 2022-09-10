@@ -7,13 +7,11 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
       minlength: 2
-  
     },
     last_name: {
       type: String,
       required: true,
       minlength: 2
-  
     },
     User_Type: {
       type: String,
@@ -23,7 +21,6 @@ const userSchema = new mongoose.Schema({
           throw new Error("Invalid User Type");
         }
       }
-
     },
     College: String,
   
@@ -38,7 +35,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Please enter an email'],
       unique: true,
-      validate: [isEmail, 'Please an valid email']
+      validate: [isEmail, 'Please enter an valid email']
     },
     password: {
       type: String,
@@ -52,7 +49,8 @@ const userSchema = new mongoose.Schema({
     }
   });
   
-  userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator);
+
 
 
 module.exports = User = mongoose.model("user", userSchema);
