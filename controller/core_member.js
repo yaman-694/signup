@@ -1,22 +1,20 @@
-const alumni = require('../model/alumni')
+const Coremember = require('../model/core_mem')
 
 const postreq = async(req, res) => {
     const {id} = req.params;
     // Find user in database with the id 
     const user = await User.findById(id);
-    const {github,Linkedin,Branch,workExperience,intershipExperience,Company} = req.body;
+    
     console.log(user)
-    let alumni1 = new alumni({
+    let core_mem = new Coremember({
+        role: req.body.role,
         object: id,
-        github,
-        Linkedin,
-        Branch,
-        workExperience,
-        intershipExperience,
-        Company
+        github: req.body.github,
+        Linkedin: req.body.Linkedin,
+        Branch: req.body.Branch
     })
     try{
-        alumni1= await alumni1.save();
+        core_mem= await core_mem.save();
         res.send('saved').status(200);
     } catch(e){
         res.send(e.message);
@@ -30,6 +28,6 @@ const getreq = async (req,res)=>{
     // Find user in database with the id 
     const user = await User.findById(id);
     console.log(user)
-    res.send("alumni dashboard").status(200);
+    res.send("dashboard").status(200);
 }
 module.exports =  { postreq,getreq };

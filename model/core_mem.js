@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const uniqueValidator = require('mongoose-unique-validator');
 const URL = require("valid-url");
 const userSchema = new mongoose.Schema({
-  designation:{
+  role:{
    type: String,
    required: true,
    maxlength: 50
@@ -26,7 +26,12 @@ const userSchema = new mongoose.Schema({
    type: String, 
    required: true,
    maxlength: 50
+ },
+ object: {
+    type: String,
+    required: true
  }
+
 
 });
 
