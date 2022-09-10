@@ -4,6 +4,6 @@ const {verifyToken} = require('../middleware/auth');
 const {alumicheck} = require('../middleware/checkuser');
 const {getreq} = require('../controller/cards');
 
-router.route("/:id").get(getreq);
+router.route("/:id").get(verifyToken,getreq);
 
 module.exports = router
