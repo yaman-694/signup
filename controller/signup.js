@@ -35,6 +35,7 @@ const postRegister = async (req, res) => {
       res.status(400).json("Minimum password length 8 character");
     }
         encryptedPassword = await bcrypt.hash(password, 10);
+
         try{
           const user = await User.create({
             first_name,
