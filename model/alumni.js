@@ -7,14 +7,12 @@ const userSchema = new mongoose.Schema({
   },
   Branch: {
     type: String,
-    required: true,
     maxlength: 50,
   },
   workExperience: {
     type: String,
     maxlength: 5000,
-    minlength: 50,
-    required: true,
+    minlength: 50
   },
 
   intershipExperience: {
@@ -52,4 +50,4 @@ userSchema.path("Linkedin").validate((val) => {
 userSchema.plugin(uniqueValidator);
 
 //check
-module.exports = alumni = mongoose.model("alumni", userSchema);
+module.exports = Alumni = mongoose.model("alumni", userSchema);

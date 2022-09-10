@@ -16,8 +16,8 @@ const getreset = async (req,res)=>{
         res.send('Not valid link');
         return
     }
+
     // If we have valid id now we will check for the valid token
-    
     try{
         const payload = jwt.verify(token,process.env.TOKEN_HEADER_KEY+user.password);
         res.send('Reset page')

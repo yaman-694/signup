@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser')
 require("dotenv").config();
 
 const login = require('./routes/login');
-const logout = require('./routes/logout')
+const logout = require('./routes/logout');
+const cards_routes = require('./routes/cards');
 const alumni = require('./routes/alumni');
 const forgetpassword = require('./routes/forget-password');
 const resetToken = require('./routes/reset')
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json())
 app.use(cookieParser())
+app.use(express.urlencoded({extended: false}))
 
 
 //routes
@@ -38,14 +40,11 @@ app.use('/signup',signup);
 app.use('/alumni',alumni);
 app.use('/forget-password',forgetpassword);
 app.use('/reset-token',resetToken);
-app.use(express.urlencoded({extended: false}))
 app.use('/core_member',core_member); 
-
+app.use('/alumni-info-cards',cards_routes);
 app.use('/home',home);
 app.use('/alumni-info',alumni_info);
 app.use('/logout',logout);
-
-
 app.use('/home',home);
 app.use('/alumni-info',alumni_info);
 app.use('/logout',logout);

@@ -1,4 +1,4 @@
-const alumni = require('../model/alumni')
+const Alumni = require('../model/alumni')
 
 const postreq = async(req, res) => {
     const {id} = req.params;
@@ -6,7 +6,7 @@ const postreq = async(req, res) => {
     const user = await User.findById(id);
     const {github,Linkedin,Branch,workExperience,intershipExperience,Company} = req.body;
     console.log(user)
-    let alumni1 = new alumni({
+    let alumni1 = new Alumni({
         object: id,
         github,
         Linkedin,

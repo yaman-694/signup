@@ -10,21 +10,18 @@ const userSchema = new mongoose.Schema({
  },
  github: {
    type: String,
-   required: 'URL can\'t be empty',
-   maxlength: 70,
+   maxlength: 70
    
 
  },
  Linkedin: {
    type: String,
-   required: 'URL can\'t be empty',
    maxlength: 70
 
  },
  
  Branch:{
-   type: String, 
-   required: true,
+   type: String,
    maxlength: 50
  },
  object: {
@@ -48,4 +45,4 @@ userSchema.path('Linkedin').validate((val) => {
 userSchema.plugin(uniqueValidator);
 
 //check 
-module.exports = core_mem = mongoose.model("core_member", userSchema);
+module.exports = Core_mem = mongoose.model("core_member", userSchema);
