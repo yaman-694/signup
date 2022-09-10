@@ -9,7 +9,7 @@ require("dotenv").config();
 const login = require('./routes/login');
 const logout = require('./routes/logout')
 const alumni = require('./routes/alumni');
-const core = require('./routes/core_member')
+const core_member = require('./routes/core_member')
 const signup = require('./routes/signup');
 const alumni_info = require('./routes/alumni-info');
 const home = require('./routes/home')
@@ -32,13 +32,15 @@ app.use(cookieParser())
 
 
 //routes
-app.use('/login',login)
-app.use('/signup',signup)
+app.use('/login',login);
+app.use('/signup',signup);
 app.use('/alumni',alumni);
-app.use('/core',core);
-app.use('/home',home)
-app.use('/alumni-info',alumni_info)
-app.use('/logout',logout)
+app.use(express.urlencoded({extended: false}))
+app.use('/core_member',core_member); 
+
+app.use('/home',home);
+app.use('/alumni-info',alumni_info);
+app.use('/logout',logout);
 
 
 
