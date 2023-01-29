@@ -9,6 +9,6 @@ const {
 } = require('../controller/signup');
 
 
-router.route("/").get(verifyToken,getRegister).post(verifyToken,postRegister);
+router.route("/").get(verifyToken,getRegister).post(postRegister);
 
 module.exports = router;

@@ -3,8 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
-  const token =
-    req.cookies.auth;
+  const token =req.header.token;
 
   if (!token) {
     return res.status(302).redirect('/login');
@@ -12,7 +11,7 @@ const verifyToken = (req, res, next) => {
   try {
     jwt.verify(token, config.TOKEN_HEADER_KEY,(err, decodedToken)=>{
       if(err){
-        return res.status(302).redirect("/login");
+        return res.status(404).send({error:"Unauthorized"})
       }else{
         next();
       }

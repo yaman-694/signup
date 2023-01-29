@@ -16,7 +16,7 @@ const signup = require('./routes/signup');
 const alumni_info = require('./routes/alumni-info');
 const home = require('./routes/home')
 const mongoose = require("mongoose");
-
+// const forget = require('./routes/forget-password');
 //connections
 try{ 
   const uri = process.env.MONGO_DB;
@@ -48,7 +48,7 @@ app.use('/logout',logout);
 app.use('/home',home);
 app.use('/alumni-info',alumni_info);
 app.use('/logout',logout);
-
+// app.use('/api/v1',forget);
 
 app.listen(process.env.PORT, function () {
   console.log("Server started on port",process.env.PORT);

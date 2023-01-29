@@ -49,7 +49,7 @@ const postRegister = async (req, res) => {
 
         
         const token = createtoken(user._id,user.User_Type);
-        res.cookie('auth',token,{httpOnly: true, maxAge: 3*24*60*60*1000});
+       
         res.status(201).json({user : user._id})
       
       
